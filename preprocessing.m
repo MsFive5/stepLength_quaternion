@@ -4,12 +4,12 @@ close all;
 clear all;
 % read raw data: raw.acc, raw.gyr, raw.quat
 % and early preprocessing
-dir_name='1119data2';
+dir_name='1122data2';
 left_sensor_name='E9_15';
 right_sensor_name='E8_EE';
 
 wlen = 20;
-threshold = 0.0001;
+threshold = 0.001;
 
 %% read the raw BlueRadios_*.txt file and plot left and right side
 % read raw data
@@ -23,8 +23,13 @@ testR = data_aligned.right;
 testL = data_aligned.left;
 if strcmp(dir_name,'1119data2')
     test_ind = [4300 min(size(testL,1),size(testR,1))];
-else
+elseif strcmp(dir_name,'1119data1')
     test_ind = [7000 min(size(testL,1),size(testR,1))];
+elseif strcmp(dir_name,'1122data1')
+    test_ind = [7000 min(size(testL,1),size(testR,1))];
+else
+    test_ind = [6000 min(size(testL,1),size(testR,1))];
+
 end
 test_data = calibrate_aligned(data_aligned, wlen, threshold, test_ind);
 save(strcat(dir_name,'/test_data'), 'test_data', 'test_ind');
