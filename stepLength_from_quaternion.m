@@ -9,14 +9,15 @@ clear all;
 
 leg_length = 31*2.54*0.01;
 total_walking_distance = 50*30.48*0.01;
-dir_name='1119data1';
+dir_name='1119data2';
 load(strcat(dir_name, '/test_data.mat'));
 plotYes = 1;
 
 
 [hsl, ~] = heel_strike_detection(test_data.left.acc, plotYes);
 [hsr, ~] = heel_strike_detection(test_data.right.acc, plotYes);
-
+hsl=round(hsl);
+hsr=round(hsr);
 [start_left, end_left] = walk_start_detection(test_data.left.acc, plotYes);
 [start_right, end_right] = walk_start_detection(test_data.right.acc, plotYes);
 

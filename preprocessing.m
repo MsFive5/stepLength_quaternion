@@ -4,9 +4,9 @@ close all;
 clear all;
 % read raw data: raw.acc, raw.gyr, raw.quat
 % and early preprocessing
-dir_name='1122data2';
-left_sensor_name='E9_15';
-right_sensor_name='E8_EE';
+dir_name='1119data1';
+left_sensor_name='E8_EE';
+right_sensor_name='E9_15';
 
 wlen = 20;
 threshold = 0.001;
@@ -22,7 +22,7 @@ keyboard;
 testR = data_aligned.right;
 testL = data_aligned.left;
 if strcmp(dir_name,'1119data2')
-    test_ind = [4300 min(size(testL,1),size(testR,1))];
+    test_ind = [4600 min(size(testL,1),size(testR,1))];
 elseif strcmp(dir_name,'1119data1')
     test_ind = [7000 min(size(testL,1),size(testR,1))];
 elseif strcmp(dir_name,'1122data1')
